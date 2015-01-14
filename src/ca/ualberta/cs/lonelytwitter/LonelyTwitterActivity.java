@@ -20,7 +20,7 @@ import android.widget.ListView;
 
 public class LonelyTwitterActivity extends Activity {
 
-	private static final String FILENAME = "file.sav";
+	private static final String FILENAME = "file.sav";//static is the same in java and in c, final means that it cant be changed: stuff that is fina you make it all capital
 	private EditText bodyText;
 	private ListView oldTweetsList;
 	
@@ -49,6 +49,20 @@ public class LonelyTwitterActivity extends Activity {
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
+		User u= new Author("joe");//creates new objects,with name of class 
+		//we dont need to import user because we are in the same package
+		try {
+			u.setName("Joe2");
+			
+		}catch (IOException e){
+			e.printStackTrace();
+			//cmmnet:some code thaqt tells users a shorter name, 2 kinds of excetions: fatal or nonfatal, 
+		}
+		
+		
+		ArrayList<User> x= new ArrayList<User>();//the stuff in the <> is the type, 
+		
+		
 		super.onStart();
 		String[] tweets = loadFromFile();
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
