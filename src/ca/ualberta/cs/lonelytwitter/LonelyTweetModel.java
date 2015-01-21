@@ -1,6 +1,7 @@
 package ca.ualberta.cs.lonelytwitter;
 
 import java.util.Date;
+//serailization GSON library, handles STUFF
 
 public abstract class LonelyTweetModel {
 	protected String text;
