@@ -1,5 +1,7 @@
 package ca.ualberta.cs.lonelytwitter;
 
+import java.util.EmptyStackException;
+
 import android.os.Bundle;
 import android.widget.TextView;
 import android.app.Activity;
@@ -13,18 +15,33 @@ public class IntentReaderActivity extends Activity {
 	public static final int NORMAL = 1;
 	public static final int REVERSE = 2;
 	public static final int DOUBLE = 3;
+	public static int NULL;
+	
 	
 	private String text;
-	private int mode;
+	private int mode;//mode for transformation
 	
 	public String getText() {
+		if (text.isEmpty()){
+			return null;
+		}
+		else{
 		return text;
+		}
 	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_intent_reader);
+		Intent intent= getIntent();
+		
+		mode= intent.getIntExtra(TRANSFORM_KEY, NORMAL);
+		text = transformText(intent.getStringExtra(TEXT_KEY));
+		
+		TextView textview=(TextView) findViewById(R.id.intentText);
+		textview.setText(text);
+		
 	}
 	
 	public String transformText(String text) {
@@ -39,6 +56,8 @@ public class IntentReaderActivity extends Activity {
 				return new String(string);
 			case DOUBLE:
 				return text + text;
+			
+			
 		}
 		return text;
 	}
